@@ -16,15 +16,13 @@ export class AuthController {
   @Post()
   @UsePipes(ValidationPipe)
   createBoard(@Body() createBoardDto: CreateBoardDto): Board {
-    return this.createBoard(createBoardDto);
+    return this.authservice.createBoard(createBoardDto);
   }
 
   @Get('/:id')
   getBoardById(
     @Param('id',
-      new ParseUUIDPipe
-        ({ errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE }))
-    id: string): Board {
+      new ParseUUIDPipe({ errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE })) id: string): Board {
     return this.authservice.getBoardById(id);
   }
   @Patch('/id/status')
