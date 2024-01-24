@@ -2,7 +2,7 @@ import { Controller, Body, Post, Delete, HttpCode, HttpStatus, Param, Validation
 import { AuthService } from './auth.service';
 import { CreateBoardDto } from 'src/DTO/Create_Board.dto';
 import { Board, BoardStatus } from './auth.model';
-import { BoardStatusValidationPipe } from 'src/auth/'
+import { BoardStatusValidationPipe } from './pipes/board_pipe';
 
 @Controller('auth')
 export class AuthController {
@@ -33,7 +33,7 @@ export class AuthController {
   }
   @Delete(':/id')
   @HttpCode(204)
-  deleteboard(@Param('id', ParseUUIDPipe) id : string) : void {
-    this.authservice.deleteboard(id);
+  deleteBoard(@Param('id', ParseUUIDPipe) id : string) : void {
+    this.authservice.deleteBoard(id);
   }
 }
